@@ -13,3 +13,13 @@ docker run -it \
     -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
     -p 5432:5432 \
     postgres:13
+
+sudo chown -R codespace /workspaces/data-eng-zoomcamp-2024/02_docker_sql/ny_taxi_postgres_data
+
+pgcli -h localhost -p 5432 -u root -d ny_taxi
+
+wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
+
+gzip -dk yellow_tripdata_2021-01.csv.gz
+
+head -n 100 yellow_tripdata_2021-01.csv > yellow_head.csv
